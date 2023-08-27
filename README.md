@@ -10,12 +10,9 @@ The Weather App is a web-based application that allows users to retrieve histori
 
 - **Weather Details:** Access detailed weather information such as temperature, humidity, wind speed, and more.
 
-## Getting Started
+### APIs Used
+[Open Weather APIs](https://www.weather.gov/)
 
-To use the WeatherPoint App, follow these steps:
-
-1. **Clone the Repository:** Clone this repository to your local machine using the following command:
-
-   ```sh
-   git clone git@github.com:hg77080/WeatherApp.git
-   ```
+### API Info
+* Method: `GET`
+* URL: `https://api.weather.gov/points/{latitude},{longitude}`,`https://api.weather.gov/gridpoints/${grid}/{x},{y}/forecast`
