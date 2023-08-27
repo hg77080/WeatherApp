@@ -1,0 +1,22 @@
+.app_container{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #31376A;
+}
+
+.card_container {
+    width: 400px;
+    box-shadow: 9px 7px 40px -6px rgba(0, 0, 0, 0.25);
+    background-color: #dae3fd;
+    transition: background-color 2s ease;
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
