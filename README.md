@@ -2,7 +2,7 @@
 
 The Weather App is a web-based application that allows users to retrieve historical weather information for specific geographic locations in the United States. By providing latitude and longitude coordinates,users can access weather data from a past point in time for the given location.
 
-![Weather App Screenshot](HomeScreen.png)
+![Weather App Screenshot](./HomeScreen.png)
 
 ## Features
 
