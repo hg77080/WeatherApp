@@ -11,19 +11,20 @@ function WeatherPage() {
   const [data, setData] = useState();
   const [activeUnit, setActiveUnit] = useState("fahrenheit");
   const [location, setLocation] = useState();
+  const [temperature, setTemperature] = useState();
   const navigate = useNavigate();
   const fetchForecastData = async (arr) => {
     await axios(`https://api.weather.gov/points/${arr[0]},${arr[1]}`)
       .then((res) => {
         setLocation(res.data.properties?.relativeLocation?.properties);
         axios(`${res.data.properties?.forecast}`)
-          .then((res) =>
-            setData(
-              res.data.properties.periods.find(
-                (ele) => ele.name === "Wednesday Night"
-              )
-            )
-          )
+          .then((res) => {
+            let result = res.data.properties.periods.find(
+              (ele) => ele.name === "Wednesday Night"
+            );
+            setData(result);
+            setTemperature(result.temperature);
+          })
           .catch((err) => console.log(err.response.data.title));
       })
       .catch((err) => console.log(err.response.data.title));
@@ -40,13 +41,15 @@ function WeatherPage() {
 
   const unitToggleHandler = ({ type }) => {
     let res;
-    if (type === "celcius") {
-      res = ((data?.temperature - 32) * 5) / 9;
-    } else {
-      res = (data?.temperature * 9) / 5 + 32;
+    if (activeUnit !== type) {
+      if (type === "celcius") {
+        res = ((temperature - 32) * 5) / 9;
+      } else {
+        res = (temperature * 9) / 5 + 32;
+      }
+      setTemperature(Math.round(res));
+      setActiveUnit(type);
     }
-    setActiveUnit(type);
-    setData({ ...data, temperature: Math.ceil(res) });
   };
   return (
     <>
@@ -57,7 +60,7 @@ function WeatherPage() {
               <img src={data?.icon} className="night_logo" />
               <div className="temp_details">
                 <div className="heading">
-                  {data?.temperature}
+                  {temperature}
                   <sup
                     className={`temp_unit ${
                       activeUnit !== "celcius" && "active_unit"
